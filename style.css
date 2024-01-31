@@ -1,0 +1,17 @@
+#main, #reproductor{
+    text-align: center;
+}
+
+#email, #password{
+    width: 20vw;
+    text-align: center;
+}
+
+ul{
+    list-style: none;
+}
+
+#botones{
+    display: flex;
+   
+}
