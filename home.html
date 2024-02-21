@@ -15,37 +15,103 @@
     <title>Reproductor Web</title>
 </head>
 <body>
-
-
-    <main>
-        <div id="reproductor">
-            <h2>Reproduciendo desde el álbun</h2>
-            <ul>
-                <li>Rise</li>
-            </ul>
-            <img src="RasmusRise.jpeg" alt="portada del albún Rise del grupo The Rasmus" id="portadaAlbun">
-            <div id="datosReproduccion">
-                <ul>
-                    <li>Nombre: Jezebel</li>
-                    <li>Artista: The Rasmus</li>                    
-                    <li>Duración: 3:10</li>
-                    <li>Género: Rock</li>
-                </ul>
-            </div>
-            <div id="botones">
+    <div class="container">
+        <div class="row">
+            <nav class="listas col">
+                <div>
+                    <form>
+                        <input type="search" placeholder="Busca tu canción" id="inputBuscar">
+                        <input type="button" value="Buscar" id="searchButton">
+                    </form>
+                </div>
+                <br>
                 
-                    <div><i class="fa-solid fa-backward-step"></i></div>
-                    <div><i class="fa-solid fa-play"></i></div>
-                    <div><i class="fa-solid fa-forward-step"></i></div>
-                    <div><i class="fa-solid fa-stop"></i></div>
-                    <div><i class="fa-solid fa-volume-xmark"></i></div>
-                
-            </div>
+                <div id="canciones" class="border border-primary">
+                    <h3>Lista de canciones</h3>
+                    <ul>
+                                              
+                    </ul>                    
+                </div>
+                <br>
+
+                <div id="myPlaylist" class="border border-primary">
+                    <h3>My playlist</h3>
+                    <ul>
+                        <!-- <li>canción1
+                            <button class="boton-play">
+                            <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button class="boton-agregarFav">
+                            <i class="fa-solid fa-heart"></i>
+                            </button>
+                            <button class="boton-remover">
+                            <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </li>                      -->
+                         
+                         
+                    </ul>
+                </div>
+                <br>
+
+                <div id="favoritos" class="border border-primary">
+                    <h3>Favoritos</h3>
+                    <ul>
+                        <!-- <li>canción1
+                            <button class="boton-play">
+                            <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button class="boton-quitarFav">
+                            <i class="fa-regular fa-heart"></i>
+                            </button>
+                            <button class="boton-agregarLista">
+                            <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </li> -->
+                         
+                    </ul>
+                </div>
+            </nav>
+        
+            <main class="reproduccion col">
+                <div id="reproductor">
+                    <h2>Reproduciendo desde el álbun</h2>
+                    <ul>
+                        <li>Rise</li>
+                    </ul>
+                    <div id="coverDiv">
+                        <img id = "cover" src="RasmusRise.jpeg" alt="portada del albún Rise del grupo The Rasmus" >
+                    </div>
+                    <br>
+                    <div id="datosReproduccion">
+                        <ul>
+                            <li>Nombre: Jezebel</li>
+                            <li>Artista: The Rasmus</li>                    
+                            <li>Duración: 3:10</li>
+                            <li>Género: Rock</li>
+                        </ul>
+                    </div>
+                    <div id="botones">
+                        
+                            <div id="retrocede"><i class="fa-solid fa-backward-step"></i></div>
+                            <div id="play"><i class="fa-solid fa-play"></i></div>
+                            <div id="adelanta"><i class="fa-solid fa-forward-step"></i></div>
+                            <div id="stop"><i class="fa-solid fa-stop"></i></div>
+                            <div id="mute"><i class="fa-solid fa-volume-xmark"></i></div>
+                        
+                    </div>
+                </div>
+            </main>
         </div>
-    </main>
+    </div>
 
  <!-- íconos -->
  <script src="https://kit.fontawesome.com/c64cf5b3ce.js" crossorigin="anonymous"></script>
- 
+<!-- <script src="script.js"></script> -->
+<script src="sc.js"></script>
 </body>
 </html>
+
+
+git config --global user.email "gabi.pazmino.armijos@gmail.com"
+  git config --global user.name "GabiPazmino"

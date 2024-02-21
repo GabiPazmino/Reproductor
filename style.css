@@ -1,3 +1,6 @@
+.container{
+    margin-top: 3%;
+}
 #main, #reproductor{
     text-align: center;
 }
@@ -13,5 +16,17 @@ ul{
 
 #botones{
     display: flex;
-   
+    justify-content: center;
+    
 }
+
+#play, #adelanta, #retrocede, #stop, #mute{
+    margin: 1% 2%;
+}
+/* BLOCK DE LISTA DE CANCIONES */
+#canciones, #lista, #favoritos{
+    height: 100px;
+    width: auto;
+    overflow-y: auto;
+
+    }
