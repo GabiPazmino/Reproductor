@@ -26,50 +26,21 @@
                 </div>
                 <br>
                 
-                <div id="canciones" class="border border-primary">
-                    <h3>Lista de canciones</h3>
-                    <ul>
-                                              
-                    </ul>                    
+                <div class="boxListas">
+                    <h3>Lista de canciones</h3> 
+                    <div id="canciones"></div>                                     
                 </div>
                 <br>
 
-                <div id="myPlaylist" class="border border-primary">
+                <div class="boxListas">
                     <h3>My playlist</h3>
-                    <ul>
-                        <!-- <li>canción1
-                            <button class="boton-play">
-                            <i class="fa-solid fa-play"></i>
-                            </button>
-                            <button class="boton-agregarFav">
-                            <i class="fa-solid fa-heart"></i>
-                            </button>
-                            <button class="boton-remover">
-                            <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </li>                      -->
-                         
-                         
-                    </ul>
+                    <div id="myPlaylist"></div> 
                 </div>
                 <br>
 
-                <div id="favoritos" class="border border-primary">
+                <div class="boxListas">
                     <h3>Favoritos</h3>
-                    <ul>
-                        <!-- <li>canción1
-                            <button class="boton-play">
-                            <i class="fa-solid fa-play"></i>
-                            </button>
-                            <button class="boton-quitarFav">
-                            <i class="fa-regular fa-heart"></i>
-                            </button>
-                            <button class="boton-agregarLista">
-                            <i class="fa-solid fa-plus"></i>
-                            </button>
-                        </li> -->
-                         
-                    </ul>
+                    <div id="favoritos"></div> 
                 </div>
             </nav>
         
@@ -77,7 +48,7 @@
                 <div id="reproductor">
                     <h2>Reproduciendo desde el álbun</h2>
                     <ul>
-                        <li>Rise</li>
+                        <li><span id="albumSee"></span></li>
                     </ul>
                     <div id="coverDiv">
                         <img id = "cover" src="RasmusRise.jpeg" alt="portada del albún Rise del grupo The Rasmus" >
@@ -85,10 +56,10 @@
                     <br>
                     <div id="datosReproduccion">
                         <ul>
-                            <li>Nombre: Jezebel</li>
-                            <li>Artista: The Rasmus</li>                    
-                            <li>Duración: 3:10</li>
-                            <li>Género: Rock</li>
+                            <li>Nombre: <span id="nombreSee"></span></li>
+                            <li>Artista: <span id="autorSee"></span></li>                    
+                            <li>Duración: <span id="duracionSee"></span></li>
+                            <li>Género: <span id="generoSee"></span></li>
                         </ul>
                     </div>
                     <div id="botones">

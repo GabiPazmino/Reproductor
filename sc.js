@@ -205,18 +205,12 @@ class Reproductor{
             this.audio.currentTime = 0;
             console.log("stop")
         })
-
-        // let pause = document.getElementById("pause");
-        // pause.addEventListener("click", ()=> {
-        //     this.isPaused = true;
-        //     this.audio.pause(); 
-        //     console.log("pause")           
-        // })
-
-        // this.audio.addEventListener("ended", ()=> {
-        //     console.log("La reproducción ha finalizado.");
-        //     this.audio.play();
-        // })
+     
+        // para cambiar de canción
+        this.audio.addEventListener("ended", ()=> {
+           this.next();
+           console.log("La reproducción ha finalizado.");
+        })
     }
 
     mostrarCanciones = function(playlist){
@@ -331,10 +325,24 @@ class Reproductor{
         }
     }
   
-// MÉTODO CAMBIAR PORTADA
+    // MÉTODO CAMBIAR PORTADA
     cambiarPortada = function(){
         let cover = document.getElementById("cover");
         cover.src = "cover/"+ this.currentSong.cover;
+    }
+
+    // MÉTODO CAMBIAR Datos de canciones al reproductor
+    cambiarDatos = function(){
+        let albumSee = document.getElementById("albumSee");
+        let nombreSee = document.getElementById("nombreSee");
+        let autorSee = document.getElementById("autorSee");
+        let duracionSee = document.getElementById("duracionSee");
+        let generoSee = document.getElementById("generoSee");
+        albumSee.innerHTML = this.currentSong.album;
+        nombreSee.innerHTML = this.currentSong.nombre;
+        autorSee.innerHTML = this.currentSong.autor;
+        duracionSee.innerHTML = this.currentSong.duracion;
+        generoSee.innerHTML = this.currentSong.genero;        
     }
 
 // MÉTODO PARA REPRODUCIR CANCIÓN
@@ -343,46 +351,34 @@ class Reproductor{
             this.audio.src = "mp3/" + this.currentSong.urlSong;
             this.audio.play();
             this.cambiarPortada();
+            this.cambiarDatos();
         }else{
             this.audio.play();
             this.isPaused = true;
         }        
     }
 
-//     pause = function(){        
-//         this.audio.pause();                     
-//     }
 
-//     stop = function(){
-//         this.isPaused = false;
-//         this.audio.pause();
-//         this.audio.currentTime = 0;                
-//     }
+    next = function(){
+        let id = this.currentSong.id;
+        switch(this.currentPlaylist){
+            case "busqueda":
+                this.currentSong = this.catalogoCanciones.id;
+                this.play();
+                break;
+            case "favoritos":
+                this.currentSong = this.favoritos.nextSong(id);
+                this.play();
+                break;
+            case "myPlaylist":
+                this.currentSong = this.myPlaylist.nextSong(id);
+                this.play();
+                break;
+        }
 
-//     next = function(){
-//         let id = this.currentSong.id;
-//         switch(this.currentPlaylist){
-//             case "busqueda":
-//                 this.currentSong = this.catalogoCanciones.id;
-//                 this.play();
-//                 break;
-//             case "favoritos":
-//                 this.currentSong = this.favoritos.nextSong(id);
-//                 this.play();
-//                 break;
-//             case "myPlaylist":
-//                 this.currentSong = this.myPlaylist.nextSong(id);
-//                 this.play();
-//                 break;
-//         }
-
-//         this.currentSong = this.currentPlaylist.getCurrentSong(0);
-//         this.play();
-          
-//     }
-    
-    
-   
+        this.currentSong = this.currentPlaylist.getCurrentSong(0);
+        this.play();          
+    }   
 }
 
 
