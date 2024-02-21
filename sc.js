@@ -131,11 +131,11 @@ class Reproductor{
 
     constructor() {
         this.catalogoCanciones = [
-            new Cancion (1, "Morir en tu piel", "9 Púrpura", "9 Púrpura", 2009, "Rock", 4.23, "cover/1.jpeg", "mp3/1.mp3" ),
-            new Cancion (2, "An Ornament", "Negative", "Karma Killer", 2009, "Rock", 5.59, "cover/2.jpeg", "mp3/2.mp3"),
-            new Cancion (3, "Como tú", "Jaguares", "Cuando la sangre galopa", 2001, "Rock", 4.15, "cover/3.jpeg", "mp3/3.mp3"),
-            new Cancion (4, "Aún", "Coda", "Veinte Para las Doce", 1995, "Rock", 4.53, "cover/4.jpeg", "mp3/4.mp3"),
-            new Cancion (5, "Because of you", "Skunk Anansie", "Smashes & Trashes", 2009, "Rock", 5.44, "cover/5.jpeg", "mp3/5.mp3"),
+            new Cancion (1, "Morir en tu piel", "9 Púrpura", "9 Púrpura", "2009", "Rock", "4:23", "cover/1.jpeg", "mp3/1.mp3" ),
+            new Cancion (2, "An Ornament", "Negative", "Karma Killer", "2009", "Rock", "5:59", "cover/2.jpeg", "mp3/2.mp3"),
+            new Cancion (3, "Como tú", "Jaguares", "Cuando la sangre galopa", "2001", "Rock", "4:15", "cover/3.jpeg", "mp3/3.mp3"),
+            new Cancion (4, "Aún", "Coda", "Veinte Para las Doce", "1995", "Rock", "4:53", "cover/4.jpeg", "mp3/4.mp3"),
+            new Cancion (5, "Because of you", "Skunk Anansie", "Smashes & Trashes", "2009", "Rock", "5:44", "cover/5.jpeg", "mp3/5.mp3"),
         ];
 
         this.mostrarCanciones();
