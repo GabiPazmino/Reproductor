@@ -49,67 +49,69 @@ class Song {
 class Playlist{
     listaCanciones;
 
-    constructor(nombre, listaCanciones, ordenEscucha){
+    constructor(nombre){
         this.nombre = nombre
-        this.listaCanciones = listaCanciones       
-        this.ordenEscucha = ordenEscucha
+        this.listaCanciones = [];       
+       
     }
 
-    // addSongToPlaylist(song){
-    //     this.listaCanciones.push(song)
-    //     this.dibujarCanciones();
-    // }
+    // RECIBE LA CANCIÓN QUE DI CLICK Y LA EMPUJA E IMPRIME EN EL DIV DE LA LISTA
+    addSongToPlaylist(song){
+        this.listaCanciones.push(song)
+        this.dibujarCanciones();
+        console.log(song);
+    }
     
-    // dibujarCanciones(){
-    //     let canciones = document.getElementById(this.nombre);
-    //     let icon = "";
-    //     let icon2 = "";
-    //     switch (this.nombre){
-    //         case "divFavoritos":
-    //             icon = "fa-plus";
-    //             icon2 = "fa-regular fa-heart";
-    //             break;
+    // IMPRIME LAS CANCIONES EN LAS LISTAS
+    dibujarCanciones(){
+        let canciones = document.getElementById(this.nombre);
+        console.log(this.nombre);
+        let icon = "";
+        let icon2 = "";
+        switch (this.nombre){
+            case "favoritos":
+                icon = "fa-plus";
+                icon2 = "fa-regular fa-heart";
+                break;
             
-    //         case "divLista":
-    //             icon = "fa-trash";
-    //             icon2 = "fa-heart";
-    //             break;
-    //     }
-    //     canciones.innerHTML = "";
-    //     this.listaCanciones.forEach(song => {
-    //         canciones.innerHTML += `
-    //         <li id="res_${song.id}" class="cancion">${song.nombre}
-    //         <button class="playSong" data-idCancion="${song.id}> <i class="fa-solid fa-play"></i>
-    //         </button>
-    //         <button class="addPlaylist" data-idCancion="${song.id}> <i class="fa-solid ${icon}"></i>
-    //         </button>
-    //         <button class="favoritos" data-idCancion="${song.id}> <i class="fa ${icon2}"></i>
-    //         </button>
+            case "myPlaylist":
+                icon = "fa-trash";
+                icon2 = "fa-heart";
+                break;
             
-    //     </li>`;
-    //     } )
+        }
+        canciones.innerHTML = "";
+        this.listaCanciones.forEach(song => {
+            canciones.innerHTML += `
+            <li id="res_${song.id}">${song.nombre}
+            <span class="playSong fa-solid fa-play" data-idCancion="${song.id}"></span>
+            <span class="addPlaylist fa-solid ${icon}" data-idCancion="${song.id}"></span>
+            <span class="favoritos fa ${icon2}" data-idCancion="${song.id}"></span >            
+        </li>`;
+        } )
 
-    //     this.onPlay();
-    // }    
+        // escucha para reproducir
+        this.onPlay();
+    }    
     
-    // onPlay(){
-    //     let playSongs = document.getElementsByClassName("playSong");
-    //     for (let i = 0; i < playSongs.length; i++){
+    // ESCUCHA AL PLAYSONGS
+    onPlay(){
+        let playSongs = document.getElementsByClassName("playSong");
+        for (let i = 0; i < playSongs.length; i++){
             
-    //         playSongs[i].addEventListener("click", ()=>{
-    //             let id = playSongs[i].getAttribute("data-idCancion");
-    //             let cancion = this.listaCanciones.find(song => song.id == id);
-    //             let event = new CustomEvent("playSong", {
-    //                 detail: {
-    //                     song:cancion,
-    //                     actual: this.nombre
-    //                 }
-                    
-    //             })
-    //             document.dispatchEvent(event);
-    //         })
-    //     }
-    // }
+            playSongs[i].addEventListener("click", ()=>{
+                let id = playSongs[i].getAttribute("data-idCancion");
+                let cancion = this.listaCanciones.find(song => song.id == id);
+                let event = new CustomEvent("playSong", {
+                    detail: {
+                        song: cancion,
+                        actual: this.nombre
+                    },               
+                });
+                document.dispatchEvent(event);
+            })
+        }
+    }
 
 
     // nextSong (id){}
@@ -169,11 +171,14 @@ class Reproductor{
         this.favoritos = new Playlist ("favoritos");
         this.myPlaylist = new Playlist ("myPlaylist");  
         
-        // document.addEventListener("playSong", (e) => {
-        //     this.currentSong = e.detail.song;
-        //     this.currentPlaylist = e.detail.actual;
-        //     this.play();
-        // } )
+        // ESCUCHA CUANDO DA CLICK EN ALGUNA LISTA Y LE AVISA AL REPRODUCTOR
+        document.addEventListener("playSong", (e) => {
+            // canción que debe reproducir
+            this.currentSong = e.detail.song;
+            // de que playlist es la canción
+            this.currentPlaylist = e.detail.actual;
+            this.play();
+        } )
 
         // inicia en pausa 
         this.isPaused = false;
@@ -245,12 +250,15 @@ class Reproductor{
             })
         }
 
+     
         // AGREGAR CANCIONE A FAVORITOS
         let favoritos = document.getElementsByClassName("favoritos");
         for (let i = 0; i < favoritos.length; i++){
             favoritos[i].addEventListener("click", ()=>{
                 let id = favoritos[i].getAttribute("data-idCancion");
-                this.addPlaylist(is, "favoritos");                
+                // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
+                this.addPlaylist(id, "favoritos");      
+                console.log(id)          
             })
         }
 
@@ -259,26 +267,28 @@ class Reproductor{
         for (let i = 0; i < addPlaylist.length; i++){
             addPlaylist[i].addEventListener("click", ()=>{
                 let id = addPlaylist[i].getAttribute("data-idCancion");
-                this.addPlaylist(is, "myPlaylist");                
+                this.addPlaylist(id, "myPlaylist");  
+                console.log(id)                 
             })
         }
 
     }
 
-    // addPlaylist = function(id, playlist){
-    //     let cancion = this.catalogoCanciones.find(song => song.id == id);
+    // UBICA LA CANCION QUE DI CLICK Y LA BUSCA EN EL CATÁLOGO PAR AGREGARLA A ALGUNA LISTA
+    addPlaylist = function(id, playlist){
+        let cancion = this.catalogoCanciones.find(song => song.id == id);
 
-    //     switch (playlist){
-    //         case favoritos:
-    //             this.favoritos.addSongToPlaylist(cancion);
-    //             break;
-    //         case myPlaylist:
-    //             this.addPlaylist.addSongToPlaylist(cancion);
-    //             break;
-    //     }
-    // }
+        switch (playlist){
+            case "favoritos":
+                this.favoritos.addSongToPlaylist(cancion);
+                break;
+            case "myPlaylist":
+                this.myPlaylist.addSongToPlaylist(cancion);
+                break;
+        }
+    }
 
-    // MÉTODO MOSTRAR BÚSQUEDA DE CANCIONES
+      // MÉTODO MOSTRAR BÚSQUEDA DE CANCIONES
     mostrarBusqueda(filtroCanciones){
         let canciones = document.getElementById("canciones");
         filtroCanciones.forEach(song => {
