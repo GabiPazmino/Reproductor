@@ -318,14 +318,13 @@ class Reproductor{
 // MÉTODO CAMBIAR PORTADA
     cambiarPortada = function(){
         let cover = document.getElementById("cover");
-        // cover.src = "/cover/"+ this.currentSong.cover;
-        cover.src = "/cover/"+ this.currentSong.cover;
+        cover.src = "cover/"+ this.currentSong.cover;
     }
 
 // MÉTODO PARA REPRODUCIR CANCIÓN
     play = function(){
         if(this.currentSong !== undefined && this.isPaused == false){
-            this.audio.src = "/mp3/" + this.currentSong.urlSong;
+            this.audio.src = "mp3/" + this.currentSong.urlSong;
             this.audio.play();
             this.cambiarPortada();
         }else{
