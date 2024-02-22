@@ -188,9 +188,9 @@ class Reproductor{
     iniciaControles(){
         let buscar = document.getElementById("searchButton");
         let inputBuscar = document.getElementById("inputBuscar");
-        let inputValue = inputBuscar.value;
+        // let inputValue = inputBuscar.value;
         buscar.addEventListener("click", ()=> {
-            this.buscarCancion(inputValue);
+            this.buscarCancion(inputBuscar.value);
         })
 
         let play = document.getElementById("play");
@@ -207,8 +207,9 @@ class Reproductor{
         })
      
         // para cambiar de canción
-        this.audio.addEventListener("ended", ()=> {
-           this.next();
+       this.audio.addEventListener("ended", ()=> {
+            this.next()
+            // reproductor.audio.currentTime = 255
            console.log("La reproducción ha finalizado.");
         })
     }
@@ -243,7 +244,6 @@ class Reproductor{
                 console.log (id)
             })
         }
-
      
         // AGREGAR CANCIONE A FAVORITOS
         let favoritos = document.getElementsByClassName("favoritos");
@@ -308,9 +308,9 @@ class Reproductor{
         let canciones = document.getElementById("canciones");
         canciones.innerHTML = "";
         // RESULTADO BUSQUEDA POR NOMBRE, ALBÚM Y AUTOR
-        let resNombre = this.catalogoCanciones.filter(song => song.nombre.includes(inputUser));
-        let resAlbum = this.catalogoCanciones.filter(song => song.album.includes(inputUser));
-        let resAutor = this.catalogoCanciones.filter(song => song.autor.includes(inputUser));
+        let resNombre = this.catalogoCanciones.filter(song => song.nombre.toLowerCase().match(inputUser));
+        let resAlbum = this.catalogoCanciones.filter(song => song.album.toLowerCase().match(inputUser));
+        let resAutor = this.catalogoCanciones.filter(song => song.autor.toLowerCase().match(inputUser));
         // UNO LOS RESULTADOS EN UN SOLO ARREGLO, UTILIZO ... PARA PASAR CADA UNO DE LOS VALORES DEL ARREGLO
         let filtroCanciones = [...resNombre, ...resAlbum, ...resAutor];
         // LIMPIO DUPLICADOS DEL ARREGLO

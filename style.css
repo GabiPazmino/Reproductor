@@ -1,12 +1,13 @@
 body {
-    background-image: url(/cover/plumas.jpg);
+    background-image: url("cover/plumas.jpg");
+    
 
 }
 
 .container{
     margin-top: 3%;
       /* letra */
-      color: rgb(35, 34, 36);
+      color: rgb(192, 145, 238);
       font-size: larger;
 }
 #main, #reproductor{
@@ -29,7 +30,7 @@ li{
 /* botones del reproductor */
 #play, #adelanta, #retrocede, #stop, #mute{
     margin: 1% 2%;
-    color: #222503;
+    color: #b14c4c;
     font-size: xx-large;
 }
 /* BLOCK DE LISTA DE CANCIONES */
@@ -40,11 +41,11 @@ li{
 }
 /* div de las canciones en playlist */
 #canciones, #favoritos, #myPlaylist{
-    color: #0a0a0a;
+    color: #f57272;
 }
 /* botones de las listas */
 .playSong, .favoritos, .addPlaylist{
-    color: #050505;
+    color: #d67979;
    font-size: x-large;
 }
 /* contenedor de imagen de portada */
