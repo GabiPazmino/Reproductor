@@ -48,10 +48,12 @@ class Song {
 
 class Playlist{
     listaCanciones;
+    currentIndex;
 
     constructor(nombre){
         this.nombre = nombre
         this.listaCanciones = [];       
+        // this.currentIndex = 0;   
        
     }
 
@@ -102,6 +104,7 @@ class Playlist{
             playSongs[i].addEventListener("click", ()=>{
                 let id = playSongs[i].getAttribute("data-idCancion");
                 let cancion = this.listaCanciones.find(song => song.id == id);
+                this.currentIndex = i;
                 let event = new CustomEvent("playSong", {
                     detail: {
                         song: cancion,
@@ -113,8 +116,20 @@ class Playlist{
         }
     }
 
+    // removeSongPlaylist (song{
 
-    // nextSong (id){}
+    // })
+
+
+    nextSong (id){
+        let index = this.listaCanciones.findIndex(song => song.id == id);
+        return this.listaCanciones[index +1];
+    }
+
+    prevSong (id){        
+        let index = this.listaCanciones.findIndex(song => song.id == id);
+        return this.listaCanciones[index -1];
+    }
 }
 
 class Reproductor{
@@ -122,10 +137,11 @@ class Reproductor{
     currentSong;
     audio;
     filtroCanciones;
-    currentPlaylist = "canciones";
+    currentPlaylist;
     favoritos;
     myPlaylist;
     isPaused;
+    currentIndex;
 
     constructor() {
         this.catalogoCanciones = [
@@ -205,11 +221,38 @@ class Reproductor{
             this.audio.currentTime = 0;
             console.log("stop")
         })
+
+        let forward = document.getElementById("adelanta");
+        forward.addEventListener("click", () => {   
+                    
+            // if(currentIndex === this.currentPlaylist.length-1){
+            //     currentIndex = 0;
+            //     this.play();
+            // }else{
+            //     this.next();
+            // };
+            this.next();
+            console.log("estoy adelantando")
+        })
+
+        let backward = document.getElementById("retrocede");
+        backward.addEventListener("click", () => {   
+                    
+            // if(currentIndex === this.currentPlaylist.length-1){
+            //     currentIndex = 0;
+            //     this.play();
+            // }else{
+            //     this.next();
+            // };
+            this.prev();
+            console.log("estoy retrocediendo")
+        })
+        
      
         // para cambiar de canción
        this.audio.addEventListener("ended", ()=> {
-            this.next()
-            // reproductor.audio.currentTime = 255
+            this.next();     
+           
            console.log("La reproducción ha finalizado.");
         })
     }
@@ -235,6 +278,7 @@ class Reproductor{
             playSongs[i].addEventListener("click", ()=>{
                 // defino la última lista con la que interactúo
                 this.currentPlaylist = "canciones";
+                this.currentIndex = i;
                 // guardo el id de cada canción al dar click sobre ella (el atributo "data-" da la info de la canción, en este caso el id)
                 let id = playSongs[i].getAttribute("data-idCancion");                
                 // encuentro mi la cancion por el id en el catálogo de canciones
@@ -365,8 +409,8 @@ class Reproductor{
     next = function(){
         let id = this.currentSong.id;
         switch(this.currentPlaylist){
-            case "busqueda":
-                this.currentSong = this.catalogoCanciones.id;
+            case "canciones":
+                this.currentSong = this.find(song => song.id === id);
                 this.play();
                 break;
             case "favoritos":
@@ -377,10 +421,28 @@ class Reproductor{
                 this.currentSong = this.myPlaylist.nextSong(id);
                 this.play();
                 break;
+    }}
+
+
+    prev = function(){
+        let id = this.currentSong.id;
+        switch(this.currentPlaylist){
+            case "canciones":
+                this.currentSong = this.find(song => song.id === id);
+                this.play();
+                break;
+            case "favoritos":
+                this.currentSong = this.favoritos.prevSong(id);
+                this.play();
+                break;
+            case "myPlaylist":
+                this.currentSong = this.myPlaylist.prevSong(id);
+                this.play();
+                break;
         }
 
-        this.currentSong = this.currentPlaylist.getCurrentSong(0);
-        this.play();          
+        // this.currentSong = this.currentPlaylist.getCurrentSong(0);
+        // this.play();          
     }   
 }
 
