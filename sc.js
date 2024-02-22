@@ -85,8 +85,8 @@ class Playlist{
             canciones.innerHTML += `
             <li id="res_${song.id}">${song.nombre}
             <span class="playSong fa-solid fa-play" data-idCancion="${song.id}"></span>
-            <span class="addPlaylist fa-solid ${icon}" data-idCancion="${song.id}"></span>
-            <span class="favoritos fa ${icon2}" data-idCancion="${song.id}"></span >            
+            <span class="favoritos fa ${icon2}" data-idCancion="${song.id}"></span >  
+            <span class="addPlaylist fa-solid ${icon}" data-idCancion="${song.id}"></span>                      
         </li>`;
         } )
 
@@ -245,7 +245,7 @@ class Reproductor{
             })
         }
      
-        // AGREGAR CANCIONE A FAVORITOS
+        // AGREGAR CANCIONES A FAVORITOS
         let favoritos = document.getElementsByClassName("favoritos");
         for (let i = 0; i < favoritos.length; i++){
             favoritos[i].addEventListener("click", ()=>{
@@ -256,7 +256,7 @@ class Reproductor{
             })
         }
 
-        // AGREGAR CANCIONES A MI LISTA
+        // AGREGA CANCIONES A MI LISTA
         let addPlaylist = document.getElementsByClassName("addPlaylist");
         for (let i = 0; i < addPlaylist.length; i++){
             addPlaylist[i].addEventListener("click", ()=>{
@@ -265,6 +265,9 @@ class Reproductor{
                 console.log(id)                 
             })
         }
+
+        
+        
 
     }
 
