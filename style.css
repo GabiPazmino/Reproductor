@@ -64,6 +64,15 @@ li{
     max-height: 213px;
 
 }
-.encabeyado{
+.encabezado{
     background-color: rgba(21, 16, 22, 0.4);
+}
+
+#searchButton{
+    border-radius: 10%;
+    background-color: #973f7d;
+    border: 1px solid ;
+    background-color: #973f7d;
+    color: #9e8989;
+    font-weight: 600;
 }
