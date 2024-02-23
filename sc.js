@@ -116,10 +116,10 @@ class Playlist{
         }
     }
 
-    // removeSongPlaylist (song){
-    //     this.listaCanciones = this.listaCanciones.filter(song => song !== song);
-    //     this.dibujarCanciones();
-    // }
+    removeSongPlaylist (song){
+        this.listaCanciones = this.listaCanciones.filter(song => song !== song);
+        this.dibujarCanciones();
+    }
 
 
     nextSong (id){
@@ -224,6 +224,11 @@ class Reproductor{
             console.log("stop")
         })
 
+        let mute = document.getElementById("mute");
+        mute.addEventListener("click", () =>{
+            this.toggleMute();
+        })
+
         let forward = document.getElementById("adelanta");
         forward.addEventListener("click", () => {   
                     
@@ -310,9 +315,7 @@ class Reproductor{
                 this.addPlaylist(id, "myPlaylist");  
                 console.log(id)                 
             })
-        }
-
-        
+        }       
         
 
     }
@@ -334,6 +337,7 @@ class Reproductor{
                         console.log(id)                 
                     })
                 }
+                // removeSongPlaylist();
                 break;
             case "myPlaylist":
                 this.myPlaylist.addSongToPlaylist(cancion);
@@ -427,6 +431,10 @@ class Reproductor{
         }        
     }
 
+    toggleMute() {
+        this.audio.muted = !this.audio.muted;
+        console.log(`Modo de silencio: ${this.audio.muted ? 'activado' : 'desactivado'}`);
+    }
 
     next = function(){
         let id = this.currentSong.id;
