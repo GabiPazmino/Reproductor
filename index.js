@@ -20,6 +20,7 @@ loginBoton.addEventListener("click", (event) =>{
     const user = users.find(user => user.username == userValue && user.password == passwordValue);
     
     if(user){
+        localStorage.setItem("isLogged", true);
         window.location.href = "home.html";
     }else{
         alert("Wrong credentials");

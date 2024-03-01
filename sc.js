@@ -1,4 +1,6 @@
-
+if(!localStorage.getItem("isLogged")){
+    window.location.href = "index.html";
+}
 
 class Song {
     constructor (id, nombre, autor, album, año, genero, duracion, cover, urlSong){
