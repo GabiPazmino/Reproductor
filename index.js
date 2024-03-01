@@ -15,16 +15,11 @@ loginBoton.addEventListener("click", (event) =>{
     event.preventDefault();
     
     let userValue = userInput.value;
-    let passwordValue = passwordInput.value;
+    let passwordValue = passwordInput.value;    
 
-    let logged=false;
-    users.forEach(user => {
-        if(user.username == userValue && user.password == passwordValue){
-            logged =true;
-        }
-    });
-
-    if(logged){
+    const user = users.find(user => user.username == userValue && user.password == passwordValue);
+    
+    if(user){
         alert("Logged in");
     }else{
         alert("Wrong credentials");
