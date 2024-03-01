@@ -19,7 +19,9 @@ loginBoton.addEventListener("click", (event) =>{
 
     let logged=false;
     users.forEach(user => {
-        if(user.username == userValue && user.passwordValue == passwordValue){logged =true;}
+        if(user.username == userValue && user.password == passwordValue){
+            logged =true;
+        }
     });
 
     if(logged){
