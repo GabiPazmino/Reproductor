@@ -23,6 +23,8 @@ loginBoton.addEventListener("click", (event) =>{
         localStorage.setItem("isLogged", true);
         window.location.href = "home.html";
     }else{
+        userInput.value = "";
+        passwordInput.value = "";
         alert("Wrong credentials");
     }
 })
