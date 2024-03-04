@@ -118,10 +118,10 @@ class Playlist{
         }
     }
 
-    removeSongPlaylist (song){
-        this.listaCanciones = this.listaCanciones.filter(song => song !== song);
-        this.dibujarCanciones();
-    }
+    // removeSongPlaylist (song){
+    //     this.listaCanciones = this.listaCanciones.filter(song => song !== song);
+    //     this.dibujarCanciones();
+    // }
 
 
     nextSong (id){
@@ -149,7 +149,7 @@ class Reproductor{
 
     constructor() {
         this.catalogoCanciones = [
-            new Song (1, "Morir en tu piel", "9 Púrpura", "9 Púrpura", "2009", "Rock", "4:23", "1.jpg", "1.mp3" ),
+            new Song (1, "Morir en tu piel", "9 Pürpura", "9 Pürpura", "2009", "Rock", "4:23", "1.jpg", "1.mp3" ),
             new Song (2, "An Ornament", "Negative", "Karma Killer", "2009", "Rock", "5:59", "2.jpeg", "2.mp3"),
             new Song (3, "Como tú", "Jaguares", "Cuando la sangre galopa", "2001", "Rock", "4:15", "3.jpeg", "3.mp3"),
             new Song (4, "Aún", "Coda", "Veinte Para las Doce", "1995", "Rock", "4:53", "4.jpeg", "4.mp3"),
@@ -335,7 +335,7 @@ class Reproductor{
                 for (let i = 0; i < addPlaylist.length; i++){
                     addPlaylist[i].addEventListener("click", ()=>{
                         let id = addPlaylist[i].getAttribute("data-idCancion");
-                        this.addPlaylist(id, "myPlaylist");  
+                         
                         console.log(id)                 
                     })
                 }
@@ -349,7 +349,7 @@ class Reproductor{
                     favoritos[i].addEventListener("click", ()=>{
                         let id = favoritos[i].getAttribute("data-idCancion");
                         // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
-                        this.addPlaylist(id, "favoritos");      
+                            
                         console.log(id)          
                     })
                 }
@@ -442,7 +442,8 @@ class Reproductor{
         let id = this.currentSong.id;
         switch(this.currentPlaylist){
             case "canciones":
-                this.currentSong = this.find(song => song.id === id);
+                this.currentSong = this.canciones.nextSong(id);
+                // find(song => song.id === id);
                 this.play();
                 break;
             case "favoritos":
@@ -460,7 +461,8 @@ class Reproductor{
         let id = this.currentSong.id;
         switch(this.currentPlaylist){
             case "canciones":
-                this.currentSong = this.find(song => song.id === id);
+                this.currentSong = this.canciones.nextSong(id);
+                // find(song => song.id === id);
                 this.play();
                 break;
             case "favoritos":
