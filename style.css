@@ -53,7 +53,7 @@ li{
     color: #9e8989;
 }
 /* botones de las listas */
-.playSong, .favoritos, .addPlaylist{
+.playSong, .favoritos, .myPlaylist{
     color: #6e2057;
    font-size: x-large;
 }
