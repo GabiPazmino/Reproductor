@@ -78,12 +78,13 @@ class Playlist{
         switch (this.nombre){
             case "favoritos":
                 icon = "fa-plus";
-                icon2 = "fa-regular fa-heart";                       
+                icon2 = "fa-trash";
+                                    
                 break;
             
             case "myPlaylist":
-                icon = "fa-trash";
-                icon2 = "fa-heart";
+                icon = "fa-heart";
+                icon2 = "fa-trash";
                 break;
             
         }
@@ -92,8 +93,8 @@ class Playlist{
             canciones.innerHTML += `
             <li id="res_${song.id}">${song.nombre}
             <span class="playSong fa-solid fa-play" data-idCancion="${song.id}"></span>
-            <span class="favoritos fa ${icon2}" data-idCancion="${song.id}"></span >  
-            <span class="myPlaylist fa-solid ${icon}" data-idCancion="${song.id}"></span>                      
+            <span class="favoritos fa ${icon}" data-idCancion="${song.id}"></span >  
+            <span class="myPlaylist fa-solid ${icon2}" data-idCancion="${song.id}"></span>                      
         </li>`;
         } )
 
@@ -344,27 +345,27 @@ class Reproductor{
                 this.favoritos.addSongToPlaylist(cancion);
                 let myPlaylist = document.getElementsByClassName("myPlaylist");
                 // agrega de favoritos a myplaylist                
-                for (let i = 0; i < myPlaylist.length; i++){
-                    myPlaylist[i].addEventListener("click", ()=>{
-                        let id = myPlaylist[i].getAttribute("data-idCancion");
-                         // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
-                        this.addPlaylist(id, "myPlaylist");
-                        console.log(id)                 
-                    })
-                }
+                // for (let i = 0; i < myPlaylist.length; i++){
+                //     myPlaylist[i].addEventListener("click", ()=>{
+                //         let id = myPlaylist[i].getAttribute("data-idCancion");
+                //          // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
+                //         this.addPlaylist(id, "myPlaylist");
+                //         console.log(id)                 
+                //     })
+                // }
                 break;
             case "myPlaylist":
                 this.myPlaylist.addSongToPlaylist(cancion);
                 let favoritos = document.getElementsByClassName("favoritos");                
                 // agrega de  myplaylist a favoritos
-                for (let i = 0; i < favoritos.length; i++){
-                    favoritos[i].addEventListener("click", ()=>{
-                        let id = favoritos[i].getAttribute("data-idCancion");
-                        // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
-                        this.addPlaylist(id, "favoritos");                            
-                        console.log(id)          
-                    })
-                }
+                // for (let i = 0; i < favoritos.length; i++){
+                //     favoritos[i].addEventListener("click", ()=>{
+                //         let id = favoritos[i].getAttribute("data-idCancion");
+                //         // método que agrega la canción a una playlist, recibe el id y el nombre de la playlist
+                //         this.addPlaylist(id, "favoritos");                            
+                //         console.log(id)          
+                //     })
+                // }
                 break;
         }         
     }
