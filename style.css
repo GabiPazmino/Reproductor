@@ -64,6 +64,13 @@ li{
     max-height: 213px;
 
 }
+
+#cover{
+    width: 237px;
+    height: 213px;
+    border-radius: 5%;
+}
+
 .encabezado{
     background-color: rgba(21, 16, 22, 0.4);
 }
