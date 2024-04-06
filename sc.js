@@ -68,6 +68,14 @@ class Playlist{
         console.log(song);
     }
     
+    removeSongFromPlaylist (id){
+        this.listaCanciones = this.listaCanciones.find(song => song.id == id);
+        this.listaCanciones.splice(id, 1);
+        this.dibujarCanciones();
+    //    IMPRIME DATOS DE LA CANCION
+        console.log(id);
+    }
+
     // IMPRIME LAS CANCIONES EN LAS LISTAS
     dibujarCanciones(){
         let canciones = document.getElementById(this.nombre);
@@ -93,8 +101,8 @@ class Playlist{
             canciones.innerHTML += `
             <li id="res_${song.id}">${song.nombre}
             <span class="playSong fa-solid fa-play" data-idCancion="${song.id}"></span>
-            <span class="favoritos fa ${icon}" data-idCancion="${song.id}"></span >  
-            <span class="myPlaylist fa-solid ${icon2}" data-idCancion="${song.id}"></span>                      
+            <span class="favoritos fa ${icon}" data-idCancion="${song.id}" onclick="addSongToPlaylist(${song.id})"></span >  
+            <span class="myPlaylist fa-solid ${icon2}" data-idCancion="${song.id}" onclick="removeSongFromPlaylist(${song.id})"></span>                      
         </li>`;
         } )
 
@@ -123,13 +131,7 @@ class Playlist{
         }
     }
 
-    // removeSongFromPlaylist (id){
-    //     this.listaCanciones = this.listaCanciones.find(song => song.id == id);
-    //     this.listaCanciones.splice(id, 1);
-    //     this.dibujarCanciones();
-    // //    IMPRIME DATOS DE LA CANCION
-    //     console.log(id);
-    // }
+    
 
 
     nextSong (id){
@@ -254,7 +256,7 @@ class Reproductor{
                 // this.currentIndex++;
                 this.next();
             };
-            // this.next();
+           
             console.log("estoy adelantando")
         })
 
@@ -267,10 +269,21 @@ class Reproductor{
             }else{
                 this.prev();
             };
-            // this.prev();
+           
             console.log("estoy retrocediendo")
         })
         
+        let favoritosButton = document.getElementById("favoritosButton");
+        favoritosButton.addEventListener("click", () => {
+            let id = favoritosButton.getAttribute("data-idCancion");
+            reproductor.toggleSongInPlaylist(id, "favoritos");
+        });
+
+        let myPlaylistButton = document.getElementById("myPlaylistButton");
+        myPlaylistButton.addEventListener("click", () => {
+            let id = myPlaylistButton.getAttribute("data-idCancion");
+            reproductor.toggleSongInPlaylist(id, "myPlaylist");
+        });
      
         // para cambiar de canción
        this.audio.addEventListener("ended", ()=> {
@@ -404,6 +417,32 @@ class Reproductor{
     //             break;
     //     }
     // };
+
+// MÉTODO PARA AGREAGAR O QUITAR CACNIONES DE UNA PLEYLIST
+toggleSongInPlaylist(id, playlist) {
+    let cancion = this.catalogoCanciones.find(song => song.id == id);
+
+    if (playlist === "favoritos") {
+        if (this.favoritos.listaCanciones.some(song => song.id == id)) {
+            // La canción ya está en favoritos, quitarla
+            this.favoritos.removeSongFromPlaylist(id);
+        } else {
+            // La canción no está en favoritos, agregarla
+            this.favoritos.addSongToPlaylist(cancion);
+        }
+    } else if (playlist === "myPlaylist") {
+        if (this.myPlaylist.listaCanciones.some(song => song.id == id)) {
+            // La canción ya está en myPlaylist, quitarla
+            this.myPlaylist.removeSongFromPlaylist(id);
+        } else {
+            // La canción no está en myPlaylist, agregarla
+            this.myPlaylist.addSongToPlaylist(cancion);
+        }
+    }
+}
+
+
+
 
       // MÉTODO MOSTRAR BÚSQUEDA DE CANCIONES
     mostrarBusqueda(filtroCanciones){
