@@ -28,6 +28,10 @@ li{
     padding: 0px;
 }
 
+#ulDatos{
+    padding: 0px;
+    margin: 0px;
+}
 
 #botones{
     display: flex;
@@ -95,6 +99,7 @@ li{
 #datosReproduccion{
     background-color: rgba(21, 16, 22, 0.5);
     width: 350px;
+    
     margin: 0 auto;
     
 }
