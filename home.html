@@ -18,63 +18,49 @@
     <div class="container">
         <div class="row">
             <nav class="listas col">
+                <!-- buscador de canciones -->
                 <div>
                     <form>
                         <input type="search" placeholder="Busca tu canción" id="inputBuscar">
-                        <input type="button" value="Buscar" id="searchButton">
+                        <!-- <input type="button" value="Buscar" id="searchButton"> -->
                         <a href="index.html"><i class="fa-solid fa-circle-user fa-xl" style="color: #aa55a0;"></i></a>
-                    </form>
-                    
-                    
+                    </form>                   
                 </div>
                 <br>
-                
+                <!-- //panel de todas las listas -->
                 <div class="boxListas">
                     <h3 class="fw-bolder">Lista de canciones</h3> 
                     <div id="canciones"></div>                                     
                 </div>
                 <br>
-
+                <!-- panel de lista myplaylist -->
                 <div class="boxListas">
                     <h3 class="fw-bolder">My playlist</h3>
                     <div id="myPlaylist"></div> 
                 </div>
                 <br>
-
+                <!-- panel de lista favoritos -->
                 <div class="boxListas">
                     <h3 class="fw-bolder">Favoritos</h3>
                     <div id="favoritos"></div> 
                 </div>
             </nav>
-        
+            <!-- bloque de reproductor que incluye los controladores y lo que se está escuchando -->
             <main class="reproduccion col">
                 <div id="reproductor">
-                    <h2 class="fw-bolder encabezado">Reproduciendo desde el álbun</h2>
-                    <ul>
-                        <li><span id="albumSee"></span></li>
-                    </ul>
-                    <div id="coverDiv">
-                        <img id = "cover" src="cover/1.jpg"alt="portada del albún" >
-                    </div>
-                    <br>
-                    <div id="datosReproduccion">
-                        <ul id="ulDatos">
-                            <li>Nombre: <span id="nombreSee">Morir en tu piel</span></li>
-                            <li>Artista: <span id="autorSee">9 Pürpura</span></li>                    
-                            <li>Duración: <span id="duracionSee">4:23</span></li>
-                            <li>Género: <span id="generoSee">Rock</span></li>
-                        </ul>
-                    </div>
-                    <br>
-                    <div id="botones">
+                    
+                    <!-- se llena con js -->
+                </div>
+                <!-- controladores del reproductor -->
+                <audio id="audioPlayer" controls hidden></audio>
+
+                <div id="botones">
                         
-                            <div id="retrocede"><i class="fa-solid fa-backward-step"></i></div>
-                            <div id="play"><i class="fa-solid fa-play"></i></div>
-                            <div id="adelanta"><i class="fa-solid fa-forward-step"></i></div>
-                            <div id="stop"><i class="fa-solid fa-stop"></i></div>
-                            <div id="mute"><i class="fa-solid fa-volume-xmark"></i></div>
-                        
-                    </div>
+                    <div id="retrocede"><i class="fa-solid fa-backward-step"></i></div>
+                    <div id="play" class="play" ><i class="fa-solid fa-play"></i></div>
+                    <div id="adelanta"><i class="fa-solid fa-forward-step"></i></div>
+                    <div id="stop"><i class="fa-solid fa-stop"></i></div>
+                    <div id="mute"><i class="fa-solid fa-volume-high"></i></div>               
                 </div>
             </main>
         </div>
@@ -83,7 +69,7 @@
  <!-- íconos -->
  <script src="https://kit.fontawesome.com/c64cf5b3ce.js" crossorigin="anonymous"></script>
 
-<script src="sc.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
 
